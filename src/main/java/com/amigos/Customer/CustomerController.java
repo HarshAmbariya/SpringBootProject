@@ -10,17 +10,19 @@ public class CustomerController {
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
+        this.customerService =  customerService;
     }
 
     @GetMapping("api/v1/customers")
     public List<Customer> getCustomers() {
-        return customerService.getLLCustomers();
+        return customerService.getAllCustomers();
     }
 
     @GetMapping("api/v1/customers/{customerId}")
-    public Customer getCustomer(
-            @PathVariable("customerId") Integer customerId){
-        return customerService.getCustomers(customerId);
+    public Customer getCustomer(@PathVariable("customerId") Integer customerId){
+        return customerService.getCustomer(customerId);
+
+
+
     }
 }

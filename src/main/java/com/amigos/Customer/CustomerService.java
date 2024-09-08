@@ -11,14 +11,11 @@ public class CustomerService {
         this.customerDao = customerDao;
     }
 
-    public List<Customer> getLLCustomers() {
-       return customerDao.selectAllCustomer();
+    public List<Customer> getAllCustomers() {
+        return customerDao.selectAllCustomer();
     }
-    public Customer getCustomers(Integer id) {
+    public Customer getCustomer(Integer id) {
         return customerDao.selectCustomerById(id)
-                .orElseThrow(() -> new IllegalArgumentException(
-                        "customer with id [%s] not found".formatted(id)));
+                .orElseThrow(() -> new IllegalArgumentException("Customer with id [%s] not found".formatted(id)));
     }
-
-
 }
