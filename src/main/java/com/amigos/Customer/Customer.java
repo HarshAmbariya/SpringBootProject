@@ -15,10 +15,21 @@ public class Customer {
             generator ="customer_id_sequence"
     )
     private String name;
+    @Column(
+            nullable = false
+    )
     private Integer age;
+    @Column(
+            nullable = false
+    )
 
     private Integer id;
+    @Column(
+            nullable = false
+    )
     private String email;
+
+
 
     public Customer() {
     }
