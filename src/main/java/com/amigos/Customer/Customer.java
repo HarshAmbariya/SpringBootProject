@@ -1,45 +1,43 @@
 package com.amigos.Customer;
 
 import jakarta.persistence.*;
-
 import java.util.Objects;
+
 @Entity
 public class Customer {
     @Id
-    @SequenceGenerator(
-            name = "customer_id_sequence",
-            sequenceName = "customer_id_sequence"
-    )
     @GeneratedValue(
-            strategy =  GenerationType.SEQUENCE,
-            generator ="customer_id_sequence"
-    )
-    private String name;
-    @Column(
-            nullable = false
-    )
-    private Integer age;
-    @Column(
-            nullable = false
-    )
-
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_id_sequence")
+    @SequenceGenerator(name = "customer_id_sequence",
+            sequenceName = "customer_id_sequence")
     private Integer id;
-    @Column(
-            nullable = false
-    )
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private Integer age;
+
+    @Column(nullable = false)
     private String email;
-
-
 
     public Customer() {
     }
 
-
-    public Customer(String name, Integer age, Integer id, String email) {
+    public Customer(String name, Integer age, String email) {
         this.name = name;
         this.age = age;
-        this.id = id;
         this.email = email;
+    }
+
+    // Getters and Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -50,22 +48,6 @@ public class Customer {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getAge() {
         return age;
     }
@@ -74,24 +56,36 @@ public class Customer {
         this.age = age;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return Objects.equals(name, customer.name) && Objects.equals(age, customer.age) && Objects.equals(id, customer.id) && Objects.equals(email, customer.email);
+        return Objects.equals(id, customer.id) &&
+                Objects.equals(name, customer.name) &&
+                Objects.equals(age, customer.age) &&
+                Objects.equals(email, customer.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, age, id, email);
+        return Objects.hash(id, name, age, email);
     }
 
+    @Override
     public String toString() {
         return "Customer{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", age=" + age +
-                ", id=" + id +
                 ", email='" + email + '\'' +
                 '}';
     }
